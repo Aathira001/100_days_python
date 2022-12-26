@@ -9,3 +9,4 @@ This is a student copy, and does not reflect the tutor's code in any manner othe
 The order in which the projects were done are:
 
 1. Coffee Machine - Dispenses coffee based on their cost and ingredient availability
+2. Coffee Machine using OOPs
