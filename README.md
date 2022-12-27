@@ -10,3 +10,4 @@ The order in which the projects were done are:
 
 1. Coffee Machine - Dispenses coffee based on their cost and ingredient availability
 2. Coffee Machine using OOPs
+3. Quiz using OOPs
