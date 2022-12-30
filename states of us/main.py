@@ -17,7 +17,7 @@ while len(guessed_state) < 50:
                                     prompt="What is another state's name?").title()
     if answer_state == 'Exit':
         missing_states = [x for x in states if x not in guessed_state]
-        missing_states_df = pandas.DataFrame(missing_states)
+        missing_states_df = pd.DataFrame(missing_states)
         missing_states_df.to_csv("States_to_learn.csv")
         break
     if answer_state in states:
