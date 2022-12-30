@@ -1,6 +1,4 @@
 import turtle
-
-import pandas
 import pandas as pd
 
 states_data = pd.read_csv("50_states.csv")
