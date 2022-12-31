@@ -15,3 +15,4 @@ The order in which the projects were done are:
 5. States of US - game
 6. NATO Phonetics 
 7. miles to km - tkinter
+8. Pomodoro - tkinter
