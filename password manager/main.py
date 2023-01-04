@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from random import randint, choice, shuffle
 import pyperclip
+import json
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -30,6 +31,12 @@ def save():
     website = website_entry.get()
     username = username_entry.get()
     password = password_entry.get()
+    new_data = {
+        website: {
+            "username": username,
+            "password": password,
+        }
+    }
 
     if len(password) == 0 or len(website) == 0:
         tk.messagebox.showerror(title="Invalid details!",
@@ -39,10 +46,36 @@ def save():
                                             message=f"You are trying to save: "
                                                     f"\n Username: {username} \n Password: {password}")
         if save_ok:
-            with open("data.txt", "a") as data_file:
-                data_file.write(f"{website} | {username} | {password}\n")
-                website_entry.delete(0, tk.END)
-                password_entry.delete(0, tk.END)
+            data = {}
+            try:
+                with open("data.json", "r") as data_file:
+                    data = json.load(data_file)
+                    data.update(new_data)
+            except FileNotFoundError:
+                data = new_data
+            finally:
+                with open("data.json", "w") as data_file:
+                    json.dump(data, data_file, indent=4)
+                    website_entry.delete(0, tk.END)
+                    password_entry.delete(0, tk.END)
+
+
+# ---------------------------- SEARCH PASSWORD ------------------------------- #
+def search():
+    website = website_entry.get()
+    try:
+        with open("data.json", "r") as data_file:
+            data = json.load(data_file)
+    except FileNotFoundError:
+        messagebox.showinfo(title="Error", message="No data file was found")
+    else:
+        if website in data:
+            website_dict = data[website]
+            password = website_dict["password"]
+            username = website_dict["username"]
+            messagebox.showinfo(title=website, message=f"Username: {username} \n Password: {password}")
+        else:
+            messagebox.showerror(title="Error", message=f"No details for {website} exists")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -57,9 +90,12 @@ canvas.grid(column=1, row=0)
 
 website_label = tk.Label(text="Website: ")
 website_label.grid(column=0, row=1)
-website_entry = tk.Entry(width=52)
-website_entry.grid(row=1, column=1, columnspan=2)
+website_entry = tk.Entry(width=33)
+website_entry.grid(row=1, column=1)
 website_entry.focus()
+
+search_button = tk.Button(text="Search", width=14, command=search)
+search_button.grid(column=2, row=1)
 
 username_label = tk.Label(text="Email/Username: ")
 username_label.grid(column=0, row=2)
