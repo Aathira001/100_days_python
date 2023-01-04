@@ -17,3 +17,4 @@ The order in which the projects were done are:
 7. miles to km - tkinter
 8. Pomodoro - tkinter
 9. Login details - save to file, generate password, copy password to clipboard - tkinter 
+10. Flash card - tkinter
