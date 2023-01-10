@@ -20,3 +20,4 @@ The order in which the projects were done are:
 10. Flash card - tkinter
 11. ABW - automatic birthday wisher with smtplib
 12. Kanye quotes and ISS locator - API
+13. Quizzler - improved quiz, using API
