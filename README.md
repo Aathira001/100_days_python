@@ -23,3 +23,4 @@ The order in which the projects were done are:
 13. Quizzler - improved quiz, using API
 14. Rain alert - API authentication introduction, os variables
 15. Stock alert
+16. Habit tracker
