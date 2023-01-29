@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 
 GENDER = "female"
 WEIGHT_KG = 63
@@ -9,6 +10,7 @@ APP_ID = "cdfdbb71"
 APP_KEY = "efda0b188645b252c898050211baae12"
 
 exercise_url = "https://trackapi.nutritionix.com/v2/natural/exercise"
+sheet_url = "https://api.sheety.co/fb9aa5cc65943579ed0804defbdcb47f/copyOfMyWorkouts/workouts"
 
 query = input("Please tell me what you did today: \t")
 
@@ -29,4 +31,22 @@ response = requests.post(url=exercise_url, headers=headers, json=params)
 response.raise_for_status()
 
 result = response.json()
-print(result)
+
+
+today_date = datetime.now().strftime("%d/%m/%Y")
+now_time = datetime.now().strftime("%X")
+
+for exercise in result["exercises"]:
+    sheet_inputs = {
+        "workout": {
+            "date": today_date,
+            "time": now_time,
+            "exercise": exercise["name"].title(),
+            "duration": exercise["duration_min"],
+            "calories": exercise["nf_calories"]
+        }
+    }
+
+    sheet_response = requests.post(sheet_url, json=sheet_inputs)
+
+    print(sheet_response.text)
