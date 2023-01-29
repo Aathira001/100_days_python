@@ -9,6 +9,9 @@ AGE = 25
 APP_ID = "cdfdbb71"
 APP_KEY = "efda0b188645b252c898050211baae12"
 
+SHEET_UNAME = "aa"
+SHEET_PASSWORD = "qwerty1234"
+
 exercise_url = "https://trackapi.nutritionix.com/v2/natural/exercise"
 sheet_url = "https://api.sheety.co/fb9aa5cc65943579ed0804defbdcb47f/copyOfMyWorkouts/workouts"
 
@@ -27,11 +30,10 @@ params = {
     "age": AGE,
 }
 
-response = requests.post(url=exercise_url, headers=headers, json=params)
+response = requests.post(url=exercise_url, json=params, headers=headers)
 response.raise_for_status()
 
 result = response.json()
-
 
 today_date = datetime.now().strftime("%d/%m/%Y")
 now_time = datetime.now().strftime("%X")
@@ -47,6 +49,6 @@ for exercise in result["exercises"]:
         }
     }
 
-    sheet_response = requests.post(sheet_url, json=sheet_inputs)
+    sheet_response = requests.post(sheet_url, json=sheet_inputs, auth=(SHEET_UNAME, SHEET_PASSWORD))
 
     print(sheet_response.text)
