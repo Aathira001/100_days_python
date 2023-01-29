@@ -1,19 +1,19 @@
 import requests
 from datetime import datetime
 
-GENDER = "female"
-WEIGHT_KG = 63
-HEIGHT_CM = 163
-AGE = 25
+GENDER = "GENDER"
+WEIGHT_KG = "WEIGHT"
+HEIGHT_CM = "HEIGHT"
+AGE = "AGE"
 
-APP_ID = "cdfdbb71"
-APP_KEY = "efda0b188645b252c898050211baae12"
+APP_ID = "YOUR ID"
+APP_KEY = "YOUR KEY"
 
-SHEET_UNAME = "aa"
-SHEET_PASSWORD = "qwerty1234"
+SHEET_UNAME = "YOUR UNAME"
+SHEET_PASSWORD = "YOUR PASSWORD"
 
 exercise_url = "https://trackapi.nutritionix.com/v2/natural/exercise"
-sheet_url = "https://api.sheety.co/fb9aa5cc65943579ed0804defbdcb47f/copyOfMyWorkouts/workouts"
+sheet_url = "YOUR URL"
 
 query = input("Please tell me what you did today: \t")
 
